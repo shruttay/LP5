@@ -1,14 +1,14 @@
-#include <iostream>     // For input and output
-#include <omp.h>        // For using OpenMP (parallel programming)
-#include <climits>      // For INT_MAX and INT_MIN
+#include <iostream>     
+#include <omp.h>        
+#include <climits>      
 
 using namespace std;
 
-// Function to find the minimum value in the array using OpenMP reduction
-void findMin(int arr[], int n) {
-    int min_val = INT_MAX;  // Start with the largest possible integer
 
-    // Parallel loop to reduce the minimum value
+void findMin(int arr[], int n) {
+    int min_val = INT_MAX; 
+
+
     #pragma omp parallel for reduction(min:min_val)
     for (int i = 0; i < n; i++) {
         if (arr[i] < min_val)
@@ -18,9 +18,9 @@ void findMin(int arr[], int n) {
     cout << "Minimum value: " << min_val << endl;
 }
 
-// Function to find the maximum value in the array using OpenMP reduction
+
 void findMax(int arr[], int n) {
-    int max_val = INT_MIN;  // Start with the smallest possible integer
+    int max_val = INT_MIN;  
 
     #pragma omp parallel for reduction(max:max_val)
     for (int i = 0; i < n; i++) {
@@ -31,19 +31,18 @@ void findMax(int arr[], int n) {
     cout << "Maximum value: " << max_val << endl;
 }
 
-// Function to find the sum of elements using OpenMP reduction
 void findSum(int arr[], int n) {
     int sum = 0;
 
     #pragma omp parallel for reduction(+:sum)
     for (int i = 0; i < n; i++) {
-        sum += arr[i];  // Add each element to sum
+        sum += arr[i];  
     }
 
     cout << "Sum: " << sum << endl;
 }
 
-// Function to find the average of elements
+
 void findAverage(int arr[], int n) {
     int sum = 0;
 
@@ -52,7 +51,7 @@ void findAverage(int arr[], int n) {
         sum += arr[i];
     }
 
-    double avg = (double)sum / n;  // Cast to double for decimal value
+    double avg = (double)sum / n;  
     cout << "Average: " << avg << endl;
 }
 
@@ -62,19 +61,19 @@ int main() {
     cout << "Enter number of elements: ";
     cin >> n;
 
-    int* arr = new int[n];  // Dynamically allocate array
+    int* arr = new int[n];  
 
     cout << "Enter the elements:\n";
     for (int i = 0; i < n; i++) {
-        cin >> arr[i];  // Take array input from user
+        cin >> arr[i];  
     }
 
-    // Call functions to compute values in parallel
+
     findMin(arr, n);
     findMax(arr, n);
     findSum(arr, n);
     findAverage(arr, n);
 
-    delete[] arr;  // Free dynamically allocated memory
+    delete[] arr; 
     return 0;
 }
