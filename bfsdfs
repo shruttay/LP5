@@ -1,4 +1,4 @@
-// Command to compile : g++ -fopenmp bfsdfs.cpp -o mergesort
+// Command to compile : g++ -fopenmp bfsdfs.cpp -o bfsdfs
 // execute : bfsdfs.exe
 
 #include <iostream>
