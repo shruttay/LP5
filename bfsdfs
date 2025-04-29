@@ -1,3 +1,6 @@
+// Command to compile : g++ -fopenmp bfsdfs.cpp -o mergesort
+// execute : bfsdfs.exe
+
 #include <iostream>
 #include <vector>
 #include <queue>
